@@ -53,6 +53,7 @@ class _JuvenilListScreenState extends State<JuvenilListScreen> {
         title: const Text(
           'Convenciones Juveniles',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          semanticsLabel: 'Título de la pantalla: Convenciones Juveniles',
         ),
       ),
       body: Column(
@@ -66,6 +67,7 @@ class _JuvenilListScreenState extends State<JuvenilListScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Buscar himno lema...',
                   border: OutlineInputBorder(),
+                  hintText: 'Escribe el número o el título del himno',
                 ),
                 onChanged: (text) {
                   setState(() {
@@ -79,21 +81,23 @@ class _JuvenilListScreenState extends State<JuvenilListScreen> {
           Expanded(
             child: alabanzasFiltradas.isEmpty
                 ? const Center(
-                    child: Text('No se encontraron alabanzas'),
+                    child: Text(
+                      'No se encontraron alabanzas',
+                      semanticsLabel: 'No se encontraron alabanzas',
+                    ),
                   )
                 : ListView.builder(
                     itemCount: alabanzasFiltradas.length,
                     itemBuilder: (context, index) {
                       Juvenil alabanza = alabanzasFiltradas[index];
                       return ListTile(
-                        title: Text(
-                          '${alabanza.numero}. ${alabanza.titulo}',
-                          style: const TextStyle(fontSize: 16.0),
-                        ),
-                        subtitle: Semantics(
-                          label: 'Himno lema juvenil número ${alabanza.numero}',
+                        title: Semantics(
+                          label:
+                              'Himno lema juvenil número ${alabanza.numero}, título: ${alabanza.titulo}',
                           child: Text(
-                              'Himno lema juvenil número ${alabanza.numero}'),
+                            '${alabanza.numero}. ${alabanza.titulo}',
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
                         ),
                         onTap: () {
                           Navigator.push(

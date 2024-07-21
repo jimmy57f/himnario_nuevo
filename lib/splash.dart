@@ -35,13 +35,9 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
-    // Iniciar las animaciones después de un retraso
-    Future.delayed(const Duration(seconds: 1), () {
-      _controller.forward();
-    });
-
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
+    // Iniciar las animaciones
+    _controller.forward().then((_) {
+      // Navegar a la pantalla principal después de que la animación termine
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
@@ -64,6 +60,9 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
         ),
       );
     });
+
+    // Configurar el modo de interfaz de usuario
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   }
 
   @override
@@ -92,39 +91,48 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _animation.value,
-                  child: Image.asset(
-                    "assets/BAUTIZOS.png",
-                    width: 400,
-                    height: 400,
-                    fit: BoxFit.contain,
-                  ),
-                );
-              },
+            Semantics(
+              label: 'Logo de la aplicación',
+              child: AnimatedBuilder(
+                animation: _controller,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _animation.value,
+                    child: Image.asset(
+                      "assets/BAUTIZOS.png",
+                      width: 400,
+                      height: 400,
+                      fit: BoxFit.contain,
+                    ),
+                  );
+                },
+              ),
             ),
-            FadeTransition(
-              opacity: _opacityAnimation,
-              child: const Text(
-                "IGLESIA DE DIOS",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
+            Semantics(
+              label: 'Texto de la aplicación: IGLESIA DE DIOS',
+              child: FadeTransition(
+                opacity: _opacityAnimation,
+                child: const Text(
+                  "IGLESIA DE DIOS",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            FadeTransition(
-              opacity: _opacityAnimation,
-              child: const Text(
-                "El Salvador",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+            Semantics(
+              label: 'Texto de la aplicación: El Salvador',
+              child: FadeTransition(
+                opacity: _opacityAnimation,
+                child: const Text(
+                  "El Salvador",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

@@ -1,5 +1,3 @@
-// principal.dart
-
 import 'package:HimnarioID/convenciones.dart';
 import 'package:HimnarioID/pdf_list_screen.dart';
 import 'package:flutter/material.dart';
@@ -30,15 +28,16 @@ class Principal extends StatelessWidget {
             const SizedBox(
               height: 35,
             ),
-            Center(
-              child: Semantics(
-                label: 'Imagen de bautizos',
+            Semantics(
+              label: 'Imagen de bautizos',
+              child: Center(
                 child: Image.asset(
                   "assets/BAUTIZOS.png",
                   width: 350,
+                  semanticLabel: 'Logo de la aplicación mostrando bautizos',
                 ),
               ),
-            )
+            ),
           ]),
           Column(children: <Widget>[
             Semantics(
@@ -149,8 +148,6 @@ class Principal extends StatelessWidget {
                       transitionDuration: const Duration(milliseconds: 500),
                     ),
                   );
-
-                  // Add your navigation or functionality here
                 },
               ),
             ),
@@ -168,7 +165,6 @@ class Principal extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16)),
                 onPressed: () {
                   showAvailableSoonDialog(context);
-                  // Add your navigation or functionality here
                 },
               ),
             ),

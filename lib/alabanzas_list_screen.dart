@@ -1,12 +1,10 @@
-// main.dart
-
+import 'package:HimnarioID/data.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 import 'alabanza.dart';
 import 'alabanza_detail_screen.dart';
-import 'data.dart';
 import 'alabanzas_elegidas_screen.dart'; // Importa la pantalla de alabanzas elegidas
 
 class AlabanzasListScreen extends StatefulWidget {
@@ -20,7 +18,6 @@ class _AlabanzasListScreenState extends State<AlabanzasListScreen> {
   List<Alabanza> alabanzasElegidas = [];
 
   TextEditingController _controller = TextEditingController();
-  bool showMessage = false;
 
   @override
   void initState() {
@@ -49,67 +46,24 @@ class _AlabanzasListScreenState extends State<AlabanzasListScreen> {
     });
   }
 
-  void showAddDialog(BuildContext context, Alabanza alabanza) {
+  void showAddDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            return Dialog(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    TweenAnimationBuilder(
-                      tween: Tween<double>(begin: 0, end: 1),
-                      duration: const Duration(milliseconds: 600),
-                      builder: (context, value, child) {
-                        return Opacity(
-                          opacity: value,
-                          child: const Text(
-                            'Agregado Correctamente',
-                            style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.bold),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop(); // Cierra el diálogo
-                      },
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: Text(
-                          'Cerrar',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+        return AlertDialog(
+          title: const Text('Alabanza Agregada'),
+          content: const Text('La alabanza ha sido agregada a las elegidas.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cerrar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
         );
       },
     );
-
-    // Mostrar el mensaje con animación después de 500ms
-    Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        showMessage = true;
-      });
-    });
   }
 
   void addAlabanzaElegida(Alabanza alabanza) {
@@ -117,7 +71,7 @@ class _AlabanzasListScreenState extends State<AlabanzasListScreen> {
       if (!alabanzasElegidas.contains(alabanza)) {
         alabanzasElegidas.add(alabanza);
         saveAlabanzasElegidas();
-        showAddDialog(context, alabanza);
+        showAddDialog(context);
       }
     });
   }

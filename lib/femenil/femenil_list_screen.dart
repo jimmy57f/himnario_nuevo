@@ -53,29 +53,46 @@ class _FemenilListScreenState extends State<FemenilListScreen> {
         title: const Text(
           'Convenciones Femeniles',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          semanticsLabel: 'Título de la pantalla: Convenciones Femeniles',
         ),
       ),
       body: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                labelText: 'Buscar alabanza...',
-                border: OutlineInputBorder(),
+            child: Semantics(
+              label: 'Campo de búsqueda de alabanzas femeniles',
+              child: TextField(
+                controller: _controller,
+                decoration: const InputDecoration(
+                  labelText: 'Buscar alabanza...',
+                  border: OutlineInputBorder(),
+                  hintText: 'Escribe el número o el título de la alabanza',
+                ),
+                onChanged: (text) {
+                  setState(() {
+                    _controller.text = text;
+                  });
+                  onSearchTextChanged();
+                },
               ),
             ),
           ),
           Expanded(
             child: alabanzasFiltradas.isEmpty
-                ? const Center(child: Text('No se encontraron alabanzas'))
+                ? const Center(
+                    child: Text(
+                      'No se encontraron alabanzas',
+                      semanticsLabel: 'No se encontraron alabanzas',
+                    ),
+                  )
                 : ListView.builder(
                     itemCount: alabanzasFiltradas.length,
                     itemBuilder: (context, index) {
                       Femenil alabanza = alabanzasFiltradas[index];
                       return Semantics(
-                        label: '${alabanza.numero}. ${alabanza.titulo}',
+                        label:
+                            'Alabanza número ${alabanza.numero}: ${alabanza.titulo}. Toca para más detalles',
                         button: true,
                         child: ListTile(
                           title: Text(

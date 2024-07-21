@@ -15,9 +15,13 @@ class FemenilDetailScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
-          alabanza.titulo,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        title: Semantics(
+          header: true,
+          child: Text(
+            alabanza.titulo,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            semanticsLabel: 'Título de la alabanza: ${alabanza.titulo}',
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -31,18 +35,20 @@ class FemenilDetailScreen extends StatelessWidget {
                 'Convención: ${alabanza.numero}',
                 style:
                     const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                semanticsLabel: 'Número de convención: ${alabanza.numero}',
               ),
             ),
             const SizedBox(height: 10),
             Container(
               alignment: Alignment.center,
               child: Semantics(
-                label: 'Letra de la alabanza',
+                label: 'Letra de la alabanza: ${alabanza.titulo}',
                 child: Text(
                   alabanza.letra,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
+                  semanticsLabel: 'Letra de la alabanza: ${alabanza.letra}',
                 ),
               ),
             ),

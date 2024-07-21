@@ -13,10 +13,14 @@ class JuvenilDetailScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
-          alabanza.titulo,
-          style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+        title: Semantics(
+          header: true,
+          child: Text(
+            alabanza.titulo,
+            style: const TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+            semanticsLabel: 'Título de la alabanza: ${alabanza.titulo}',
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -31,6 +35,7 @@ class JuvenilDetailScreen extends StatelessWidget {
                 'Número: ${alabanza.numero}',
                 style:
                     const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                semanticsLabel: 'Número de convención: ${alabanza.numero}',
               ),
             ),
             const SizedBox(height: 10),
@@ -44,6 +49,7 @@ class JuvenilDetailScreen extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
+                  semanticsLabel: 'Letra de la alabanza: ${alabanza.letra}',
                 ),
               ),
             ),

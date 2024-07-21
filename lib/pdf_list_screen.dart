@@ -56,6 +56,8 @@ class PDFListScreen extends StatelessWidget {
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
+                        semanticLabel:
+                            'Imagen representativa de ${pdfFiles[index]['name']}',
                       ),
                       title: Text(pdfFiles[index]['name']!),
                       onTap: () {

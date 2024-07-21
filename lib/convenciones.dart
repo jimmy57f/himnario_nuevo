@@ -1,5 +1,3 @@
-// convenciones.dart
-
 import 'package:HimnarioID/femenil/femenil_list_screen.dart';
 import 'package:HimnarioID/juvenil/juvenil_list_screen.dart';
 import 'package:HimnarioID/widgets/Header_Convenciones.dart';
@@ -25,101 +23,86 @@ class Convenciones extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              const Column(children: <Widget>[
-                HeaderConvenciones(),
-              ]),
-              Column(children: <Widget>[
-                Semantics(
-                  label: 'Botón Juvenil',
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text(
-                      "JUVENIL",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 255, 247, 247),
-                        fontSize: 16,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
-                            return JuvenilListScreen();
-                          },
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            var begin = const Offset(1.0, 0.0);
-                            var end = Offset.zero;
-                            var curve = Curves.easeOut;
+          const HeaderConvenciones(),
+          const SizedBox(height: 25),
+          Semantics(
+            label: 'Botón para acceder a la lista juvenil',
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+              ),
+              child: const Text(
+                "JUVENIL",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 247, 247),
+                  fontSize: 16,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return JuvenilListScreen();
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0);
+                      const end = Offset.zero;
+                      const curve = Curves.easeOut;
 
-                            var tween = Tween(begin: begin, end: end)
-                                .chain(CurveTween(curve: curve));
+                      final tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
 
-                            return SlideTransition(
-                              position: animation.drive(tween),
-                              child: child,
-                            );
-                          },
-                          transitionDuration: const Duration(milliseconds: 500),
-                        ),
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
                       );
                     },
+                    transitionDuration: const Duration(milliseconds: 500),
                   ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 25),
+          Semantics(
+            label: 'Botón para acceder a la lista femenil',
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+              ),
+              child: const Text(
+                "FEMENIL",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 250, 250, 250),
+                  fontSize: 16,
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Semantics(
-                  label: 'Botón Femenil',
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: const Text(
-                      "FEMENIL",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 250, 250, 250),
-                        fontSize: 16,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
-                            return FemenilListScreen();
-                          },
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            var begin = const Offset(1.0, 0.0);
-                            var end = Offset.zero;
-                            var curve = Curves.easeOut;
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return FemenilListScreen();
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0.0);
+                      const end = Offset.zero;
+                      const curve = Curves.easeOut;
 
-                            var tween = Tween(begin: begin, end: end)
-                                .chain(CurveTween(curve: curve));
+                      final tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
 
-                            return SlideTransition(
-                              position: animation.drive(tween),
-                              child: child,
-                            );
-                          },
-                          transitionDuration: const Duration(milliseconds: 500),
-                        ),
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
                       );
                     },
+                    transitionDuration: const Duration(milliseconds: 500),
                   ),
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-              ]),
-            ],
+                );
+              },
+            ),
           ),
         ],
       ),
