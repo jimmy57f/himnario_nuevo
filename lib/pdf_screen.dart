@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -11,6 +13,7 @@ class PDFViewerScreen extends StatefulWidget {
   const PDFViewerScreen(this.pdfAssetPath, {super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PDFViewerScreenState createState() => _PDFViewerScreenState();
 }
 
@@ -37,12 +40,13 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
         localFilePath = file.path;
       });
     } catch (e) {
-      // Error handling
-      print('Error loading PDF: $e');
+      // ignore: avoid_print
+      print(e.toString());
     }
   }
 
   void _goToPage(int page) {
+    // ignore: unnecessary_null_comparison
     if (_pdfViewController != null) {
       _pdfViewController.setPage(page);
     }
@@ -53,19 +57,15 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Visualizador de PDF'),
+        title: Text('Escuela '),
         actions: [
           if (_totalPages != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Semantics(
-                label: 'Página actual',
-                child: Center(child: Text('Página $_currentPage/$_totalPages')),
-              ),
+              child: Center(child: Text('Página $_currentPage/$_totalPages')),
             ),
           IconButton(
-            icon: const Icon(Icons.arrow_back),
-            tooltip: 'Página Anterior',
+            icon: Icon(Icons.arrow_back),
             onPressed: () {
               if (_currentPage != null && _currentPage! > 1) {
                 _goToPage(_currentPage! - 1);
@@ -73,8 +73,7 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.arrow_forward),
-            tooltip: 'Página Siguiente',
+            icon: Icon(Icons.arrow_forward),
             onPressed: () {
               if (_currentPage != null && _currentPage! < _totalPages!) {
                 _goToPage(_currentPage! + 1);
@@ -109,12 +108,9 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
                   _currentPage = page;
                 });
               },
-              onError: (error) {
-                // Error handling
-                print('PDF View Error: $error');
-              },
+              onError: (error) {},
             )
-          : const Center(child: CircularProgressIndicator()),
+          : Center(child: CircularProgressIndicator()),
     );
   }
 }

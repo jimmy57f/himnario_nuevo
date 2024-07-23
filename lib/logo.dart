@@ -6,14 +6,10 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      child: Semantics(
-        label: 'Logo de la aplicación, imagen de iglesia de Dios',
-        child: Center(
-          child: Image.asset(
-            "assets/BAUTIZOS.png",
-            width: 350,
-            semanticLabel: 'Logo de la aplicación mostrando Iglesia de Dios',
-          ),
+      child: Center(
+        child: Image.asset(
+          "assets/BAUTIZOS.png",
+          width: 350,
         ),
       ),
     );

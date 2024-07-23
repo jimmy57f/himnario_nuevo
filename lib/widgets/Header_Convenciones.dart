@@ -7,22 +7,17 @@ class HeaderConvenciones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         children: [
-          Semantics(
-            header: true,
-            label: "Encabezado: Convenciones",
-            child: const Text(
-              "Convenciones",
-              style: TextStyle(
-                fontSize: 40,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          Text(
+            "Convenciones",
+            style: TextStyle(
+                fontSize: 40, color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 35),
+          SizedBox(
+            height: 35,
+          ),
         ],
       ),
     );

@@ -15,7 +15,7 @@ class AlabanzaDetailScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Semantics(
-          header: true,
+          header: true, // Indica que esto es un encabezado
           label: 'Título de la alabanza: ${alabanza.titulo}',
           child: Text(
             alabanza.titulo,
@@ -29,7 +29,7 @@ class AlabanzaDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Semantics(
-              label: 'Número de la alabanza: ${alabanza.numero}',
+              label: 'Número de la alabanza',
               child: Text(
                 'Número: ${alabanza.numero}',
                 style:
@@ -37,10 +37,10 @@ class AlabanzaDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              alignment: Alignment.center,
-              child: Semantics(
-                label: 'Letra de la alabanza: ${alabanza.letra}',
+            Semantics(
+              label: 'Letra de la alabanza',
+              child: Container(
+                alignment: Alignment.center,
                 child: Text(
                   alabanza.letra,
                   style: const TextStyle(

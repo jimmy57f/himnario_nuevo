@@ -9,12 +9,10 @@ class AlabanzasElegidasScreen extends StatefulWidget {
   final Function(Alabanza) removeAlabanzaElegida;
   final Function() clearAlabanzasElegidas;
 
-  const AlabanzasElegidasScreen(this.alabanzasElegidas,
-      this.removeAlabanzaElegida, this.clearAlabanzasElegidas,
-      {super.key});
+  AlabanzasElegidasScreen(this.alabanzasElegidas, this.removeAlabanzaElegida,
+      this.clearAlabanzasElegidas);
 
   @override
-  // ignore: library_private_types_in_public_api
   _AlabanzasElegidasScreenState createState() =>
       _AlabanzasElegidasScreenState();
 }
@@ -27,16 +25,19 @@ class _AlabanzasElegidasScreenState extends State<AlabanzasElegidasScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Semantics(
-          label: 'Alabanzas Elegidas',
-          child: const Text('Alabanzas Elegidas',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+          header: true,
+          label: 'Pantalla de alabanzas elegidas',
+          child: Text(
+            'Alabanzas Elegidas',
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
         actions: [
           Semantics(
             label: 'Eliminar todas las alabanzas elegidas',
             child: IconButton(
-              icon: const Icon(Icons.delete_forever, color: Colors.red),
+              icon: Icon(Icons.delete_forever),
               onPressed: () {
                 widget.clearAlabanzasElegidas();
                 setState(() {});
@@ -49,8 +50,7 @@ class _AlabanzasElegidasScreenState extends State<AlabanzasElegidasScreen> {
           ? Center(
               child: Semantics(
                 label: 'No hay alabanzas elegidas',
-                child: const Text('No hay alabanzas elegidas',
-                    style: TextStyle(color: Colors.black)),
+                child: Text('No hay alabanzas elegidas'),
               ),
             )
           : ListView.builder(
@@ -59,15 +59,13 @@ class _AlabanzasElegidasScreenState extends State<AlabanzasElegidasScreen> {
                 Alabanza alabanza = widget.alabanzasElegidas[index];
                 return Semantics(
                   label:
-                      'Alabanza número ${alabanza.numero}, ${alabanza.titulo}',
+                      'Alabanza número ${alabanza.numero}: ${alabanza.titulo}',
                   child: ListTile(
-                    title: Text('${alabanza.numero}. ${alabanza.titulo}',
-                        style: const TextStyle(fontSize: 16.0)),
+                    title: Text('${alabanza.numero}. ${alabanza.titulo}'),
                     trailing: Semantics(
-                      label:
-                          'Eliminar alabanza número ${alabanza.numero}, ${alabanza.titulo}',
+                      label: 'Eliminar alabanza',
                       child: IconButton(
-                        icon: const Icon(Icons.delete, color: Colors.red),
+                        icon: Icon(Icons.delete),
                         onPressed: () {
                           widget.removeAlabanzaElegida(alabanza);
                           setState(() {});

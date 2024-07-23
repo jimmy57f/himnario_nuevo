@@ -50,10 +50,13 @@ class _JuvenilListScreenState extends State<JuvenilListScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
-          'Convenciones Juveniles',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          semanticsLabel: 'Título de la pantalla: Convenciones Juveniles',
+        title: Semantics(
+          header: true,
+          label: 'Lista de himnos de las Convenciones Juveniles',
+          child: const Text(
+            'Convenciones Juveniles',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: Column(
@@ -61,53 +64,48 @@ class _JuvenilListScreenState extends State<JuvenilListScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Semantics(
-              label: 'Campo de búsqueda de himnos lema juveniles',
+              label: 'Campo de búsqueda para encontrar himnos lema',
               child: TextField(
                 controller: _controller,
                 decoration: const InputDecoration(
                   labelText: 'Buscar himno lema...',
+                  hintText: 'Ingrese el número o título del himno',
                   border: OutlineInputBorder(),
-                  hintText: 'Escribe el número o el título del himno',
                 ),
-                onChanged: (text) {
-                  setState(() {
-                    _controller.text = text;
-                  });
-                  onSearchTextChanged();
-                },
               ),
             ),
           ),
           Expanded(
             child: alabanzasFiltradas.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No se encontraron alabanzas',
-                      semanticsLabel: 'No se encontraron alabanzas',
+                ? Center(
+                    child: Semantics(
+                      label: 'No se encontraron alabanzas',
+                      child: const Text('No se encontraron alabanzas'),
                     ),
                   )
                 : ListView.builder(
                     itemCount: alabanzasFiltradas.length,
                     itemBuilder: (context, index) {
                       Juvenil alabanza = alabanzasFiltradas[index];
-                      return ListTile(
-                        title: Semantics(
-                          label:
-                              'Himno lema juvenil número ${alabanza.numero}, título: ${alabanza.titulo}',
-                          child: Text(
+                      return Semantics(
+                        button: true,
+                        label:
+                            'Alabanza número ${alabanza.numero}, ${alabanza.titulo}',
+                        child: ListTile(
+                          title: Text(
                             '${alabanza.numero}. ${alabanza.titulo}',
                             style: const TextStyle(fontSize: 16.0),
                           ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    JuvenilDetailScreen(alabanza: alabanza),
+                              ),
+                            );
+                          },
                         ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  JuvenilDetailScreen(alabanza: alabanza),
-                            ),
-                          );
-                        },
                       );
                     },
                   ),

@@ -44,32 +44,26 @@ class PDFListScreen extends StatelessWidget {
             child: ListView.builder(
               itemCount: pdfFiles.length,
               itemBuilder: (context, index) {
-                return Semantics(
-                  label:
-                      'Botón para abrir el PDF de ${pdfFiles[index]['name']}',
-                  child: Card(
-                    color: Colors.white,
-                    margin: const EdgeInsets.all(10),
-                    child: ListTile(
-                      leading: Image.asset(
-                        pdfFiles[index]['image']!,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                        semanticLabel:
-                            'Imagen representativa de ${pdfFiles[index]['name']}',
-                      ),
-                      title: Text(pdfFiles[index]['name']!),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                PDFViewerScreen(pdfFiles[index]['path']!),
-                          ),
-                        );
-                      },
+                return Card(
+                  color: Colors.white,
+                  margin: const EdgeInsets.all(10),
+                  child: ListTile(
+                    leading: Image.asset(
+                      pdfFiles[index]['image']!,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
                     ),
+                    title: Text(pdfFiles[index]['name']!),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PDFViewerScreen(pdfFiles[index]['path']!),
+                        ),
+                      );
+                    },
                   ),
                 );
               },

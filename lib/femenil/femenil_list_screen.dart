@@ -50,10 +50,13 @@ class _FemenilListScreenState extends State<FemenilListScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
-          'Convenciones Femeniles',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          semanticsLabel: 'Título de la pantalla: Convenciones Femeniles',
+        title: Semantics(
+          header: true, // Indica que esto es un encabezado
+          label: 'Pantalla de listas de alabanzas femeniles',
+          child: const Text(
+            'Convenciones Femeniles',
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: Column(
@@ -61,29 +64,23 @@ class _FemenilListScreenState extends State<FemenilListScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Semantics(
-              label: 'Campo de búsqueda de alabanzas femeniles',
+              label: 'Campo de búsqueda para encontrar alabanzas',
               child: TextField(
                 controller: _controller,
                 decoration: const InputDecoration(
                   labelText: 'Buscar alabanza...',
+                  hintText: 'Ingrese el número o título de la alabanza',
                   border: OutlineInputBorder(),
-                  hintText: 'Escribe el número o el título de la alabanza',
                 ),
-                onChanged: (text) {
-                  setState(() {
-                    _controller.text = text;
-                  });
-                  onSearchTextChanged();
-                },
               ),
             ),
           ),
           Expanded(
             child: alabanzasFiltradas.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No se encontraron alabanzas',
-                      semanticsLabel: 'No se encontraron alabanzas',
+                ? Center(
+                    child: Semantics(
+                      label: 'No se encontraron alabanzas',
+                      child: const Text('No se encontraron alabanzas'),
                     ),
                   )
                 : ListView.builder(
@@ -91,9 +88,9 @@ class _FemenilListScreenState extends State<FemenilListScreen> {
                     itemBuilder: (context, index) {
                       Femenil alabanza = alabanzasFiltradas[index];
                       return Semantics(
-                        label:
-                            'Alabanza número ${alabanza.numero}: ${alabanza.titulo}. Toca para más detalles',
                         button: true,
+                        label:
+                            'Alabanza número ${alabanza.numero}, ${alabanza.titulo}',
                         child: ListTile(
                           title: Text(
                             '${alabanza.numero}. ${alabanza.titulo}',

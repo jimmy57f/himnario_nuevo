@@ -7,12 +7,9 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       child: Center(
-        child: Semantics(
-          label: "Logo de bautizos",
-          child: Image.asset(
-            "assets/BAUTIZOS.png",
-            width: 350,
-          ),
+        child: Image.asset(
+          "assets/BAUTIZOS.png",
+          width: 350,
         ),
       ),
     );

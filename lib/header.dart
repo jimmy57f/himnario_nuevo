@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -7,25 +9,17 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Semantics(
-          label: 'Título principal de la aplicación: Himnario ID',
-          child: const Text(
-            "Himnario ID",
-            style: TextStyle(
-                color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+        const Text(
+          "Himnario ID",
+          style: TextStyle(color: Colors.black),
         ),
         const SizedBox(
           height: 35,
         ),
-        Semantics(
-          label: 'Logo de la aplicación, imagen de bautizos',
-          child: Center(
-            child: Image.asset(
-              "assets/BAUTIZOS.png",
-              width: 350,
-              semanticLabel: 'Logo de la aplicación mostrando bautizos',
-            ),
+        Center(
+          child: Image.asset(
+            "assets/BAUTIZOS.png",
+            width: 350,
           ),
         ),
       ],

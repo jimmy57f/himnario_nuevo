@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:HimnarioID/convenciones.dart';
 import 'package:HimnarioID/pdf_list_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,158 +17,142 @@ class Principal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Column(children: <Widget>[
-            Semantics(
-              label: 'Título de la aplicación: Himnario ID',
-              child: const Text(
-                "Himnario ID",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
-              ),
+            const Text(
+              "Himnario ID",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 35,
             ),
-            Semantics(
-              label: 'Imagen de bautizos',
-              child: Center(
-                child: Image.asset(
-                  "assets/BAUTIZOS.png",
-                  width: 350,
-                  semanticLabel: 'Logo de la aplicación mostrando bautizos',
-                ),
+            Center(
+              child: Image.asset(
+                "assets/BAUTIZOS.png",
+                width: 350,
               ),
-            ),
+            )
           ]),
           Column(children: <Widget>[
-            Semantics(
-              label: 'Botón Himnario Seleccionado',
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.black, // Cambiar color de fondo del botón
-                ),
-                child: const Text("Himnario Seleccionado",
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return AlabanzasListScreen();
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        var begin = const Offset(1.0, 0.0);
-                        var end = Offset.zero;
-                        var curve = Curves.easeOut;
-
-                        var tween = Tween(begin: begin, end: end)
-                            .chain(CurveTween(curve: curve));
-
-                        return SlideTransition(
-                          position: animation.drive(tween),
-                          child: child,
-                        );
-                      },
-                      transitionDuration: const Duration(milliseconds: 500),
-                    ),
-                  );
-                },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.black, // Cambiar color de fondo del botón
               ),
+              child: const Text("Himnario Seleccionado",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return AlabanzasListScreen();
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 500),
+                  ),
+                );
+              },
             ),
             const SizedBox(
               height: 25,
             ),
-            Semantics(
-              label: 'Botón Himnos Lema',
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.black, // Cambiar color de fondo del botón
-                ),
-                child: const Text("Himnos Lema",
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return const Convenciones();
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        var begin = const Offset(1.0, 0.0);
-                        var end = Offset.zero;
-                        var curve = Curves.easeOut;
-
-                        var tween = Tween(begin: begin, end: end)
-                            .chain(CurveTween(curve: curve));
-
-                        return SlideTransition(
-                          position: animation.drive(tween),
-                          child: child,
-                        );
-                      },
-                      transitionDuration: const Duration(milliseconds: 500),
-                    ),
-                  );
-                },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.black, // Cambiar color de fondo del botón
               ),
+              child: const Text("Himnos lema",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return const Convenciones();
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 500),
+                  ),
+                );
+              },
             ),
             const SizedBox(
               height: 25,
             ),
-            Semantics(
-              label: 'Botón Escuelas Sabáticas',
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.black, // Cambiar color de fondo del botón
-                ),
-                child: const Text("Escuelas Sabáticas",
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return PDFListScreen();
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        var begin = const Offset(1.0, 0.0);
-                        var end = Offset.zero;
-                        var curve = Curves.easeOut;
-
-                        var tween = Tween(begin: begin, end: end)
-                            .chain(CurveTween(curve: curve));
-
-                        return SlideTransition(
-                          position: animation.drive(tween),
-                          child: child,
-                        );
-                      },
-                      transitionDuration: const Duration(milliseconds: 500),
-                    ),
-                  );
-                },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.black, // Cambiar color de fondo del botón
               ),
+              child: const Text("Escuelas Sabaticas",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return PDFListScreen();
+                    },
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      var begin = const Offset(1.0, 0.0);
+                      var end = Offset.zero;
+                      var curve = Curves.easeOut;
+
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+
+                      return SlideTransition(
+                        position: animation.drive(tween),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 500),
+                  ),
+                );
+
+                // Add your navigation or functionality here
+              },
             ),
             const SizedBox(
               height: 25,
             ),
-            Semantics(
-              label: 'Botón Pistas',
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.black, // Cambiar color de fondo del botón
-                ),
-                child: const Text("Pistas",
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
-                onPressed: () {
-                  showAvailableSoonDialog(context);
-                },
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.black, // Cambiar color de fondo del botón
               ),
+              child: const Text("Pistas",
+                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              onPressed: () {
+                showAvailableSoonDialog(context);
+                // Add your navigation or functionality here
+              },
             ),
             const SizedBox(
               height: 25,
@@ -203,21 +189,18 @@ void showAvailableSoonDialog(BuildContext context) {
                 },
               ),
               const SizedBox(height: 20.0),
-              Semantics(
-                label: 'Botón para cerrar el diálogo',
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Colors.black // Cambiar color de fondo del botón
-                      ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Cerrar',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Colors.black // Cambiar color de fondo del botón
+                    ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cerrar',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
             ],

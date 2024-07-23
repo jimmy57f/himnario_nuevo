@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:HimnarioID/femenil/femenil_list_screen.dart';
 import 'package:HimnarioID/juvenil/juvenil_list_screen.dart';
 import 'package:HimnarioID/widgets/Header_Convenciones.dart';
@@ -11,98 +13,98 @@ class Convenciones extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Semantics(
-          label: 'Título de la página: Himnos Lema',
-          child: const Text(
-            'Himnos Lema',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
+        title: const Text(
+          'Himnos Lema',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const HeaderConvenciones(),
-          const SizedBox(height: 25),
-          Semantics(
-            label: 'Botón para acceder a la lista juvenil',
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-              ),
-              child: const Text(
-                "JUVENIL",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 247, 247),
-                  fontSize: 16,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) {
-                      return JuvenilListScreen();
-                    },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0);
-                      const end = Offset.zero;
-                      const curve = Curves.easeOut;
-
-                      final tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-
-                      return SlideTransition(
-                        position: animation.drive(tween),
-                        child: child,
-                      );
-                    },
-                    transitionDuration: const Duration(milliseconds: 500),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              const Column(children: <Widget>[
+                HeaderConvenciones(),
+              ]),
+              Column(children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Colors.black, // Cambiar color de fondo del botón
                   ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 25),
-          Semantics(
-            label: 'Botón para acceder a la lista femenil',
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-              ),
-              child: const Text(
-                "FEMENIL",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 250, 250, 250),
-                  fontSize: 16,
+                  child: const Text(" JUVENIL",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 247, 247),
+                          fontSize: 16)),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return JuvenilListScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var begin = const Offset(1.0, 0.0);
+                          var end = Offset.zero;
+                          var curve = Curves.easeOut;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 500),
+                      ),
+                    );
+                  },
                 ),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) {
-                      return FemenilListScreen();
-                    },
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      const begin = Offset(1.0, 0.0);
-                      const end = Offset.zero;
-                      const curve = Curves.easeOut;
-
-                      final tween = Tween(begin: begin, end: end)
-                          .chain(CurveTween(curve: curve));
-
-                      return SlideTransition(
-                        position: animation.drive(tween),
-                        child: child,
-                      );
-                    },
-                    transitionDuration: const Duration(milliseconds: 500),
+                const SizedBox(
+                  height: 25,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Colors.black, // Cambiar color de fondo del botón
                   ),
-                );
-              },
-            ),
+                  child: const Text(" FEMENIL",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250),
+                          fontSize: 16)),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return FemenilListScreen();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var begin = const Offset(1.0, 0.0);
+                          var end = Offset.zero;
+                          var curve = Curves.easeOut;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                        transitionDuration: const Duration(milliseconds: 500),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+              ])
+            ],
           ),
         ],
       ),
@@ -135,20 +137,18 @@ void showAvailableSoonDialog(BuildContext context) {
                 },
               ),
               const SizedBox(height: 20.0),
-              Semantics(
-                label: 'Botón para cerrar el diálogo',
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Cerrar',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.red, // Cambiar color de fondo del botón
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cerrar',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
             ],
